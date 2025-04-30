@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Halaman Registrasi</title>
+</head>
+<body>
+    <h2>Registrasi Akun</h2>
+    <form action="submit.php" method="post" enctype="multipart/form-data">
+
+        <label for="nama">Nama Lengkap:</label><br>
+        <input type="text" id="nama" name="nama" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="umur">Umur:</label><br>
+        <input type="number" id="umur" name="umur" min="0" required><br><br>
+
+        <label for="tanggal_lahir">Tanggal Lahir:</label><br>
+        <input type="date" id="tanggal_lahir" name="tanggal_lahir" required><br><br>
+
+        <label for="warna">Warna Favorit:</label><br>
+        <input type="color" id="warna" name="warna"><br><br>
+
+        <label for="foto">Upload Foto Profil:</label><br>
+        <input type="file" id="foto" name="foto" accept="image/*"><br><br>
+
+        <label>Jenis Kelamin:</label><br>
+        <input type="radio" id="laki" name="jenis_kelamin" value="Laki-Laki" required>
+        <label for="laki">Laki-Laki</label><br>
+        <input type="radio" id="perempuan" name="jenis_kelamin" value="Perempuan">
+        <label for="perempuan">Perempuan</label><br><br>
+
+        <label>Hobi:</label><br>
+        <input type="checkbox" id="membaca" name="hobi[]" value="Membaca">
+        <label for="membaca">Membaca</label><br>
+        <input type="checkbox" id="traveling" name="hobi[]" value="Traveling">
+        <label for="traveling">Traveling</label><br>
+        <input type="checkbox" id="olahraga" name="hobi[]" value="Olahraga">
+        <label for="olahraga">Olahraga</label><br><br>
+
+        <label for="negara">Negara:</label><br>
+        <select id="negara" name="negara" required>
+            <option value="">--Pilih Negara--</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="Indonesia">Indonesia</option>
+        </select><br><br>
+
+        <label for="biografi">Biografi Singkat:</label><br>
+        <textarea id="biografi" name="biografi" rows="4" cols="50" placeholder="Ceritakan tentang dirimu..."></textarea><br><br>
+        <input type="submit" value="Daftar">
+    </form>
+</body>
+</html>
