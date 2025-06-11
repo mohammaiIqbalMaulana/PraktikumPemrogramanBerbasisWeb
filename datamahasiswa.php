@@ -1,27 +1,13 @@
 <?php
 
-    $koneksi = mysqli_connect("localhost:3306", "root", "","webif");
+    require 'function.php';
 
-    if(!$koneksi)
-    {
-        die("Koneksi Gagal!".mysqli_connect_error());
-    }
 
     $query = "SELECT * FROM mahasiswa";
 
-    $result = mysqli_query($koneksi, $query); //// Object
+    $rows = query($query); //// hasilnya wadah dengan isinya
 
 
-    /// ambil data (fetch) dari lemari (database) $result
-
-    $mhs = mysqli_fetch_object($result);
-    /// mysqli_fetch_row()
-    /// mysqli_fetch_assoc()
-    /// mysqli_fetch_array()
-    /// mysqli_fecth_object()
-
-
-    var_dump($mhs->nama);
 
 ?>
 
@@ -48,11 +34,24 @@
 
         <tr>
             <th>No</th>
+            <th>Foto</th>
             <th>Nama</th>
             <th>NIM</th>
             <th>Jurusan</th>
             <th>No.HP</th>
         </tr>
+        <?php 
+        $i = 1;
+        foreach ($rows as $mhs) { ?>
+        <tr>
+            <td><?= $i ?></td>
+            <td><img src="images/<?= $mhs['foto']; ?>"width="100"></td>
+            <td><?= $mhs["nama"] ?></td>
+            <td><?= $mhs["nim"] ?></td>
+            <td><?= $mhs["jurusan"] ?></td>
+            <td><?= $mhs["nohp"] ?></td>
+        </tr>
+        <?php $i++; } ?>
     </table>
     
 </body>
