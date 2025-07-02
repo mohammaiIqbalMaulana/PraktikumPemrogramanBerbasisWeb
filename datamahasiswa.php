@@ -2,16 +2,10 @@
 
     require 'function.php';
 
-
     $query = "SELECT * FROM mahasiswa";
 
     $rows = query($query); //// hasilnya wadah dengan isinya
-
-
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +24,10 @@
 
     <h1>Data Mahasiswa</h1>
 
-    <table border="1" cellspacing="0" cellpadding="10">
+    <a href="tambahdata.php"><button style="margin-bottom: 12px;
+    background-color: lightblue;">Tambah Data</button></a>
 
+    <table border="1" cellspacing="0" cellpadding="10">
         <tr>
             <th>No</th>
             <th>Foto</th>
@@ -39,6 +35,7 @@
             <th>NIM</th>
             <th>Jurusan</th>
             <th>No.HP</th>
+            <th>Aksi</th>
         </tr>
         <?php 
         $i = 1;
@@ -50,7 +47,17 @@
             <td><?= $mhs["nim"] ?></td>
             <td><?= $mhs["jurusan"] ?></td>
             <td><?= $mhs["nohp"] ?></td>
-        </tr>
+            <td> 
+                <a href="hapusdata.php/?id=<?= $mhs["id"] ?>" onclick="return confirm('Yaquen??')"  ><button        style="margin-bottom: 12px;
+            background-color: red;">Hapus</button></a> |
+                <a href="ubahdata.php/?id=<?= $mhs["id"] ?>">
+                <button style="margin-bottom: 12px; 
+                background-color:blue; color:white">
+                    Edit
+            </button>
+        </a>
+    </td>
+</tr>
         <?php $i++; } ?>
     </table>
     

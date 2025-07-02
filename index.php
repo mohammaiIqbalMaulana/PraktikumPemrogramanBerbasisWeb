@@ -51,7 +51,7 @@
     </nav>
 
     <center>
-    <img src="https://d2ya09u1z2qlgr.cloudfront.net/public/storage/article/January2024/UHuCZO0kkNMCcLX1HrLu.jpg" width="260px">
+    <img src="Images/Foto.jpeg" width="10px">
     </center>
     <h3>Berita Anime</h3>
     <p>
