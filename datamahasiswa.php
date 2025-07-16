@@ -1,9 +1,16 @@
 <?php
 
-    require 'function.php';
+    session_start();
 
+    if(!isset($_SESSION["login"]))
+    {
+        header("Location: login.php");
+        exit;
+    }
+
+
+    include 'function.php';
     $query = "SELECT * FROM mahasiswa";
-
     $rows = query($query); //// hasilnya wadah dengan isinya
 ?>
 
@@ -21,8 +28,8 @@
         <a href="about.php">ABOUT US</a> |
         <a href="login.php">LOGIN</a>
     </nav>
-
-    <h1>Data Mahasiswa</h1>
+    <a href="logout.php">Logout</a>
+    <h1>Data Mahasiswa</h1> 
 
     <a href="tambahdata.php"><button style="margin-bottom: 12px;
     background-color: lightblue;">Tambah Data</button></a>
