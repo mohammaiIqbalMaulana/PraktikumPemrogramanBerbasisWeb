@@ -1,72 +1,56 @@
 <?php
+session_start();
 
-    session_start();
+if(!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
 
-    if(!isset($_SESSION["login"]))
-    {
-        header("Location: login.php");
-        exit;
-    }
-
-
-    include 'function.php';
-    $query = "SELECT * FROM mahasiswa";
-    $rows = query($query); //// hasilnya wadah dengan isinya
+require 'function.php';
+$mahasiswa = query("SELECT * FROM mahasiswa");
+$title = "Data Mahasiswa";
+include 'includes/main_header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DATA MAHASISWA</title>
-</head>
-<body>
-    <nav align="center">
-        <a href="index.php">HOME</a> | 
-        <a href="profile.php">PROFILE</a> |
-        <a href="about.php">ABOUT US</a> |
-        <a href="login.php">LOGIN</a>
-    </nav>
-    <a href="logout.php">Logout</a>
-    <h1>Data Mahasiswa</h1> 
+<div class="container d-flex justify-content-center">
+    <div class="card p-4 mt-5" style="max-width: 900px; width: 100%;">
+        <h2 class="text-center mb-4">Data Mahasiswa</h2>
+        
+        <a href="tambahdata.php" class="btn btn-custom mb-4">Tambah Data</a>
+        
+        <div class="table-responsive">
+            <table class="data-table w-100">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Foto</th>
+                        <th>Nama</th>
+                        <th>NIM</th>
+                        <th>Jurusan</th>
+                        <th>No HP</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; foreach($mahasiswa as $mhs): ?>
+                    <tr>
+                        <td data-label="No"><?= $i++; ?></td>
+                        <td data-label="Foto"><img src="images/<?= $mhs['foto'] ?>" width="60" style="border-radius: 5px;"></td>
+                        <td data-label="Nama"><?= htmlspecialchars($mhs['nama']) ?></td>
+                        <td data-label="NIM"><?= htmlspecialchars($mhs['nim']) ?></td>
+                        <td data-label="Jurusan"><?= htmlspecialchars($mhs['jurusan']) ?></td>
+                        <td data-label="No HP"><?= htmlspecialchars($mhs['nohp']) ?></td>
+                        <td data-label="Aksi">
+                            <a href="ubahdata.php?id=<?= $mhs['id'] ?>" class="btn btn-sm edit-btn">Edit</a>
+                            <a href="hapusdata.php?id=<?= $mhs['id'] ?>" class="btn btn-sm delete-btn" 
+                               onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-    <a href="tambahdata.php"><button style="margin-bottom: 12px;
-    background-color: lightblue;">Tambah Data</button></a>
-
-    <table border="1" cellspacing="0" cellpadding="10">
-        <tr>
-            <th>No</th>
-            <th>Foto</th>
-            <th>Nama</th>
-            <th>NIM</th>
-            <th>Jurusan</th>
-            <th>No.HP</th>
-            <th>Aksi</th>
-        </tr>
-        <?php 
-        $i = 1;
-        foreach ($rows as $mhs) { ?>
-        <tr>
-            <td><?= $i ?></td>
-            <td><img src="images/<?= $mhs['foto']; ?>"width="100"></td>
-            <td><?= $mhs["nama"] ?></td>
-            <td><?= $mhs["nim"] ?></td>
-            <td><?= $mhs["jurusan"] ?></td>
-            <td><?= $mhs["nohp"] ?></td>
-            <td> 
-                <a href="hapusdata.php/?id=<?= $mhs["id"] ?>" onclick="return confirm('Yaquen??')"  ><button        style="margin-bottom: 12px;
-            background-color: red;">Hapus</button></a> |
-                <a href="ubahdata.php/?id=<?= $mhs["id"] ?>">
-                <button style="margin-bottom: 12px; 
-                background-color:blue; color:white">
-                    Edit
-            </button>
-        </a>
-    </td>
-</tr>
-        <?php $i++; } ?>
-    </table>
-    
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

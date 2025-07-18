@@ -1,54 +1,66 @@
 <?php
+session_start();
 
-        session_start();
+if(!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
 
-    if(!isset($_SESSION["login"]))
-    {
-        header("Location: login.php");
-        exit;
-    }
+require 'function.php';
 
-    require 'function.php';
-
-    $id = $_GET['id'];
-
-    $mhs = query("SELECT * FROM mahasiswa WHERE id=$id")[0];
-
+$id = $_GET['id'];
+$mhs = query("SELECT * FROM mahasiswa WHERE id=$id")[0];
 
 if (isset($_POST["submit"])) {
     if (ubahdata($_POST, $_FILES, $id) > 0) {
-        echo "<script>alert('berhasil !!'); document.location.href='../datamahasiswa.php';</script>";
+        header("Location: datamahasiswa.php?status=success&message=Data+berhasil+diubah");
+        exit;
     } else {
-        echo "<script>alert('Data gagal ditambahkan!');</script>";
+        echo "<script>alert('Data gagal diubah!');</script>";
     }
 }
+
+$title = "Ubah Data Mahasiswa";
+include 'includes/main_header.php';
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Ubah Data</title>
-</head>
-<body>
-    <h1>Ubah Data Mahasiswa</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        <label for="foto">Foto:</label><br>
-        <input type="file" name="foto" id="foto" required><br><br>
+<div class="container d-flex justify-content-center">
+    <div class="card p-4 mt-5">
+        <h2 class="text-center mb-4">Ubah Data Mahasiswa</h2>
+        
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="foto" class="form-label">Foto:</label>
+                <input type="file" class="form-control" id="foto" name="foto"> <!-- Foto tidak wajib diubah -->
+                <small class="form-text text-muted">Biarkan kosong jika tidak ingin mengubah foto.</small>
+                <?php if ($mhs['foto']): ?>
+                    <img src="images/<?= $mhs['foto'] ?>" width="100" class="mt-2" style="border-radius: 5px;">
+                <?php endif; ?>
+            </div>
+            
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama:</label>
+                <input type="text" class="form-control" id="nama" name="nama" value="<?= htmlspecialchars($mhs["nama"]) ?>" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="nim" class="form-label">NIM:</label>
+                <input type="text" class="form-control" id="nim" name="nim" value="<?= htmlspecialchars($mhs["nim"]) ?>" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="jurusan" class="form-label">Jurusan:</label>
+                <input type="text" class="form-control" id="jurusan" name="jurusan" value="<?= htmlspecialchars($mhs["jurusan"]) ?>" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="nohp" class="form-label">No HP:</label>
+                <input type="text" class="form-control" id="nohp" name="nohp" value="<?= htmlspecialchars($mhs["nohp"]) ?>" required>
+            </div>
+            
+            <button type="submit" name="submit" class="btn btn-custom w-100">Ubah Data</button>
+        </form>
+    </div>
+</div>
 
-        <label for="nama">Nama:</label><br>
-        <input type="text" name="nama" id="nama"
-        placeholder="Nama Lengkap*" required value="<?= $mhs["nama"]?>" /><br>
-
-        <label for="nim">NIM:</label><br>
-        <input type="text" name="nim" id="nim" required value="<?= $mhs["nim"]?>" /><br>
-
-        <label for="jurusan">Jurusan:</label><br>
-        <input type="text" name="jurusan" id="jurusan" required value="<?= $mhs["jurusan"]?>" /><br>
-
-        <label for="nohp">No HP:</label><br>
-        <input type="text" name="nohp" id="nohp" required value="<?= $mhs["nohp"]?>" /><br>
-
-        <button type="submit" name="submit">Ubah</button>
-    </form>
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

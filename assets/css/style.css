@@ -1,0 +1,464 @@
+/* style.css - Updated Version */
+/* Font Settings - Improved */
+:root {
+    --primary-font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --secondary-font: 'Helvetica Neue', Arial, sans-serif;
+    --base-font-size: 16px; /* Base font size for better control */
+    --h1-font-size: 2.25rem; /* ~36px */
+    --h2-font-size: 1.75rem; /* ~28px */
+    --h3-font-size: 1.5rem;  /* ~24px */
+    --h4-font-size: 1.25rem; /* ~20px */
+    --text-font-size: 1.05rem; /* ~16.8px */
+    --small-font-size: 0.925rem; /* ~14.8px */
+}
+
+body {
+    font-family: var(--primary-font);
+    font-size: var(--text-font-size);
+    line-height: 1.7; /* Improved readability */
+    color: #fff; /* Default text color for the gradient background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Initial gradient, will be adjusted by JS */
+    background: linear-gradient(135deg, #046ef9ff, #27d6dfff);
+    background-attachment: fixed; /* Keep background fixed during scroll */
+    background-size: cover; /* Ensure gradient covers the entire viewport */
+    background-repeat: no-repeat;
+}
+
+/* Typography Improvements */
+h1 {
+    font-size: var(--h1-font-size);
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-family: var(--secondary-font); /* Use secondary font for headings */
+}
+
+h2 {
+    font-size: var(--h2-font-size);
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+h3 {
+    font-size: var(--h3-font-size);
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: var(--text-font-size); /* Ensure paragraphs use the defined text size */
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for better contrast */
+}
+
+ul, ol {
+    margin-bottom: 15px;
+    padding-left: 20px;
+    font-size: var(--text-font-size); /* Apply text size to lists */
+    color: rgba(255, 255, 255, 0.9);
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+/* Card Design - Enhanced Hover */
+.card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px; /* Keep max-width for forms/smaller cards */
+    padding: 2rem;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), 
+                box-shadow 0.3s ease,
+                background-color 0.3s ease; /* Smooth transition for all properties */
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.01); /* Slightly more pronounced lift and scale */
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly brighter background */
+}
+
+/* Form Elements - Font Size */
+.form-label {
+    color: #ffffffff;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: var(--text-font-size); /* Apply text size to labels */
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid #ccc;
+    color: #fff;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    font-size: var(--text-font-size); /* Apply text size to inputs */
+}
+
+.form-control::placeholder {
+    color: #ddd;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: #ffffff;
+    color: #fff;
+    outline: none;
+}
+
+/* Buttons - Font Size */
+.btn-custom {
+    background: linear-gradient(45deg, #10fff3ff, #2555f6ff);
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: all 0.3s ease;
+    padding: 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: var(--text-font-size); /* Apply text size to buttons */
+}
+
+.btn-custom:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+/* Auth Link - Font Size */
+.auth-link {
+    color: #10fff3;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--text-font-size); /* Apply text size to auth links */
+}
+
+/* Table Styles - Font Size */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: var(--text-font-size); /* Apply text size to table */
+}
+
+.data-table th, .data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-table th {
+    background-color: rgba(16, 255, 243, 0.2);
+    font-weight: 600; /* Make table headers bolder */
+}
+
+/* Responsive Adjustments - Font Sizes */
+@media (max-width: 768px) {
+    :root {
+        --h1-font-size: 2rem; /* ~32px */
+        --h2-font-size: 1.6rem; /* ~25.6px */
+        --h3-font-size: 1.3rem; /* ~20.8px */
+        --text-font-size: 0.95rem; /* ~15.2px */
+    }
+    .card {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Global styles for body and HTML */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Default body style for main pages */
+body {
+    padding-top: 20px; /* Add some padding from the top */
+}
+
+.container {
+    flex-grow: 1; /* Allow container to grow and take available space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 960px; /* Max width for content */
+    padding: 0 15px; /* Horizontal padding */
+}
+
+/* Specific styles for index.php elements */
+.teras {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container-teras {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.taman, .kolam, .parkiran, .rak {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure image fits */
+}
+
+.taman img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.rumah, .dapur {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* General text styling */
+hr {
+    border-color: #046ef9ff;
+    margin-bottom: 20px;
+}
+
+/* --- NAVIGATION STYLES --- */
+.navbar {
+    background: linear-gradient(45deg, #10fff3ff, #2555f6ff); /* Keep original gradient for navbar background */
+    padding: 0.8rem 0; /* Adjust padding */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+    position: sticky; /* Make navbar sticky */
+    top: 0;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Make navbar container wider */
+.navbar .container {
+    max-width: 1200px; /* Increase max-width for wider navigation */
+    padding: 0 20px; /* Adjust padding */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Larger brand text */
+    font-weight: 700; /* Bolder brand text */
+    letter-spacing: 1px; /* Add some letter spacing */
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: rgba(255, 255, 255, 0.8); /* Slightly transparent white for links */
+    font-weight: 500;
+    padding: 0.75rem 1rem; /* Adjust padding for links */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    position: relative; /* Needed for underline effect */
+    overflow: hidden; /* Hide overflow for underline animation */
+}
+
+.navbar-nav .nav-item .nav-link:hover,
+.navbar-nav .nav-item .nav-link.active {
+    color: #fff; /* White on hover/active */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover/active */
+    border-radius: 8px; /* Rounded corners on hover/active */
+}
+
+/* Underline effect for navigation links */
+.navbar-nav .nav-item .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px; /* Thickness of the underline */
+    background-color: #fff; /* Color of the underline */
+    transform: translateX(-100%); /* Start off-screen to the left */
+    transition: transform 0.3s ease-out; /* Smooth animation */
+}
+
+.navbar-nav .nav-item .nav-link:hover::after,
+.navbar-nav .nav-item .nav-link.active::after {
+    transform: translateX(0); /* Slide in from the left */
+}
+
+/* Hamburger icon color */
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Logout button specific styling */
+.logout-btn-container {
+    margin-left: auto; /* Push to the right */
+    padding-left: 1rem; /* Space from other nav items */
+}
+
+.logout-btn {
+    background: linear-gradient(45deg, #f44336, #c62828); /* Red gradient */
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Allow padding and margin */
+    font-size: var(--text-font-size); /* Apply text size */
+}
+
+.logout-btn:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+/* Image styling for index.php */
+.profile-image {
+    width: 150px; /* Adjust size as needed */
+    height: 150px;
+    border-radius: 50%; /* Make it round */
+    object-fit: cover; /* Ensure image covers the area */
+    border: 3px solid #10fff3; /* Add a border */
+    margin-bottom: 20px;
+}
+
+/* Toast Notification Styles */
+.toast-notification {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+    font-size: var(--text-font-size); /* Apply text size to toast */
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.toast-notification.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.toast-notification.success {
+    background-color: #4CAF50;
+}
+
+.toast-notification.error {
+    background-color: #f44336;
+}
+
+.toast-notification.info {
+    background-color: #2196F3;
+}
+
+/* Responsive adjustments for tables */
+@media (max-width: 600px) {
+    .data-table, .data-table thead, .data-table tbody, .data-table th, .data-table td, .data-table tr {
+        display: block;
+    }
+
+    .data-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .data-table tr {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 10px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .data-table td {
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    .data-table td:before {
+        position: absolute;
+        left: 6px;
+        content: attr(data-label);
+        font-weight: bold;
+        text-align: left;
+        color: #10fff3;
+    }
+
+    .data-table td:last-child {
+        border-bottom: none;
+    }
+}
+
+/* --- AUTHENTICATION PAGES SPECIFIC STYLES --- */
+/* This will override the default body style for auth pages */
+body.auth-page {
+    display: flex;
+    flex-direction: column; /* Use column to allow content to stack */
+    justify-content: center; /* Center vertically */
+    align-items: center;     /* Center horizontally */
+    min-height: 100vh;       /* Ensure it takes full viewport height */
+    padding: 20px;           /* Add some padding */
+}
+
+/* Ensure the container for auth forms is centered and has a max-width */
+.auth-container {
+    width: 100%;
+    max-width: 500px; /* Same as .card max-width for consistency */
+    margin: auto; /* Center the container itself */
+    display: flex; /* Use flex to center the card inside */
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Allow it to grow and take available space */
+}
+
+/* Adjust card for auth pages if needed, though .card already has max-width */
+.auth-container .card {
+    width: 100%; /* Make card fill its auth-container */
+    margin-bottom: 0; /* Remove bottom margin if it causes issues with centering */
+}
+
+@media (max-width: 768px) {
+    body.auth-page {
+        padding: 10px;
+    }
+    .auth-container {
+        max-width: 95%; /* Adjust max-width for smaller screens */
+    }
+}
